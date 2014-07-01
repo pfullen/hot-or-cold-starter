@@ -29,14 +29,8 @@ $(document).ready(function(){
   console.log('The random # is ' + getNum);
 
 
-// start new Game when users clicks new game button
- $('.new').click(function () {
- 	
- 	var getNum = randomNum();
-  console.log('The random # is ' + getNum);
- 	
- 	
- })
+
+
 
 
 });
