@@ -31,9 +31,11 @@ $(document).ready(function(){
   	 function userGuess () {
   	 
   	 var valGuess = +document.getElementById("userGuess").value;
-	 return valGuess;
   	 
-  	 
+	 
+		
+
+  	 return valGuess;
   	 }
 
 
@@ -52,14 +54,15 @@ $(document).ready(function(){
     }        
     
     if (compare===0) {
-   console.log(correct);    
+   console.log(correct);
+    $('#feedback').html(correct);    
     
    } else if (compare < 10) {
-   
+   $('#feedback').html(hot);    
 	console.log(hot);
    
    } else if (compare > 10) {
-   
+    $('#feedback').html(cold);
 	console.log(cold); 
    }
        
@@ -100,6 +103,9 @@ $('#guessButton').click(function () {
 			var getUserGuess = userGuess();
         	
           var result = compareResults(getUserGuess,getNum);
+       	 $('ul #guessList').add(
+ 	 			'<li  > your guessed </li>' 
+ 	 			);	
        	 
           
    })
