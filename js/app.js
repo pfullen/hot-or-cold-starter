@@ -32,7 +32,7 @@ $(document).ready(function(){
   	 
   	 var valGuess = +document.getElementById("userGuess").value;
   	 
-	 
+	  
 		
 
   	 return valGuess;
@@ -50,6 +50,8 @@ $(document).ready(function(){
     var hotter = "You are getting hotter!!!";
     var colder = "You are getting colder!!!";    
     var same = "You guess is just as close as your last guess!";
+    var not_A_Num = "Your entry is not a number!";
+    var overLimit = "You need to enter a # between 1 & 100";
     // convert current result  to absolute number 
     
     currentResult = Math.abs(currentResult);
@@ -151,7 +153,7 @@ $(document).ready(function(){
 				guessCount = 0;
  			$('span').html(guessCount);
  			
- 			$('#feedback').html('Make your Guess!');
+ 			$('#feedback').html('Guess a Number between 1 & 100');
  	
  	      $('ul#guessList').html('');
  	
@@ -161,8 +163,7 @@ $(document).ready(function(){
 // Prevent default page refresh when submit is clicked
 $('form').submit(function(event){ 
   			 event.preventDefault(); 
-  			 guessCount++ ;
-         $('span').html(guessCount);
+  			
           console.log(guessCount);
 
 })
@@ -172,8 +173,15 @@ $('#guessButton').click(function () {
 		
 			var getUserGuess = userGuess();
         	
+         if (getUserGuess > 100 ){
+         	
+         	    $('#feedback').html("You need to select a number between 1 & 100");  
+         	
+         }      else {	
+        	 guessCount++ ;
+         $('span').html(guessCount);
           var result = +(compareResults(getUserGuess,getNum));
-         
+         }
           
     
        	 $('ul#guessList').prepend(

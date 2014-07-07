@@ -32,7 +32,7 @@ $(document).ready(function(){
   	 
   	 var valGuess = +document.getElementById("userGuess").value;
   	 
-	 
+	
 		
 
   	 return valGuess;
@@ -50,6 +50,8 @@ $(document).ready(function(){
     var hotter = "You are getting hotter!!!";
     var colder = "You are getting colder!!!";    
     var same = "You guess is just as close as your last guess!";
+    var not_A_Num = "Your entry is not a number!";
+    var overLimit = "You need to enter a # between 1 & 100";
     // convert current result  to absolute number 
     
     currentResult = Math.abs(currentResult);
@@ -123,7 +125,7 @@ $(document).ready(function(){
  //  *************Main code*************
     var guessCount = 0;
     var lastResult =null;
-    $('input#userGuess').focus();
+    $('input#userGuess').focus();    // focus on user text
     
   // get random number on startup
   
@@ -134,7 +136,7 @@ $(document).ready(function(){
 
 // start new Game when users clicks new game button
  $('.new').click(function () {
-
+    $('input#userGuess').focus();  
  	 lastResult =null;
  	 currentResult=null;
    console.log('The Last Result # is ' + lastResult);
@@ -151,7 +153,7 @@ $(document).ready(function(){
 				guessCount = 0;
  			$('span').html(guessCount);
  			
- 			$('#feedback').html('Make your Guess!');
+ 			$('#feedback').html('Guess a Number between 1 & 100');
  	
  	      $('ul#guessList').html('');
  	
@@ -172,8 +174,14 @@ $('#guessButton').click(function () {
 		
 			var getUserGuess = userGuess();
         	
+         if (getUserGuess > 100 ){
+         	
+         	    $('#feedback').html("You need to select a number between 1 & 100");  
+         	
+         }      else {	
+        	
           var result = +(compareResults(getUserGuess,getNum));
-         
+         }
           
     
        	 $('ul#guessList').prepend(
