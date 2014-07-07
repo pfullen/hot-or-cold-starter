@@ -123,6 +123,7 @@ $(document).ready(function(){
  //  *************Main code*************
     var guessCount = 0;
     var lastResult =null;
+    $('input#userGuess').focus();    // focus on user text
     
   // get random number on startup
   
@@ -133,7 +134,7 @@ $(document).ready(function(){
 
 // start new Game when users clicks new game button
  $('.new').click(function () {
-
+    $('input#userGuess').focus();  
  	 lastResult =null;
  	 currentResult=null;
    console.log('The Last Result # is ' + lastResult);
