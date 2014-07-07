@@ -61,10 +61,9 @@
 			</form>
 			
       		<p>Guess #<span id="count">0</span>!</p>
-			
+			<h2 class=guessBox clearfix> Your Guesses: </h2>
 			<ul id="guessList" class="guessBox clearfix">
-			<li> <strong> Your Guesses: </strong></li>
-			<li> Guess 1</li>
+	
 
 			</ul>
 
