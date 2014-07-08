@@ -70,12 +70,13 @@ $(document).ready(function(){
           // inner if to compare first result
      if (currentResult <= 10) {
    $('#feedback').html(hot);    
+    $('#feedback').css("background-color","red");
  
 	console.log(hot);
    
    } else if (currentResult >= 10) {
     $('#feedback').html(cold);
-
+   $('#feedback').css("background-color","blue");  
 	console.log(cold); 
    }  // close inner if on first guess
 }
@@ -84,9 +85,11 @@ $(document).ready(function(){
       	
          else if (currentResult < lastResult) {
      		 $('#feedback').html(hotter);
+     		 $('#feedback').css("background-color","red");
      		
      		}   else if (currentResult > lastResult) {
-			  $('#feedback').html(colder);     		
+			  $('#feedback').html(colder); 
+			  $('#feedback').css("background-color","blue");    		
      		
      		}
          

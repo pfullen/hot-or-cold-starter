@@ -32,7 +32,7 @@ $(document).ready(function(){
   	 
   	 var valGuess = +document.getElementById("userGuess").value;
   	 
-	
+	  
 		
 
   	 return valGuess;
@@ -70,12 +70,13 @@ $(document).ready(function(){
           // inner if to compare first result
      if (currentResult <= 10) {
    $('#feedback').html(hot);    
+    $('#feedback').css("background-color","red");
  
 	console.log(hot);
    
    } else if (currentResult >= 10) {
     $('#feedback').html(cold);
-
+   $('#feedback').css("background-color","blue");  
 	console.log(cold); 
    }  // close inner if on first guess
 }
@@ -84,9 +85,11 @@ $(document).ready(function(){
       	
          else if (currentResult < lastResult) {
      		 $('#feedback').html(hotter);
+     		 $('#feedback').css("background-color","red");
      		
      		}   else if (currentResult > lastResult) {
-			  $('#feedback').html(colder);     		
+			  $('#feedback').html(colder); 
+			  $('#feedback').css("background-color","blue");    		
      		
      		}
          
@@ -163,8 +166,7 @@ $(document).ready(function(){
 // Prevent default page refresh when submit is clicked
 $('form').submit(function(event){ 
   			 event.preventDefault(); 
-  			 guessCount++ ;
-         $('span').html(guessCount);
+  			
           console.log(guessCount);
 
 })
@@ -179,7 +181,8 @@ $('#guessButton').click(function () {
          	    $('#feedback').html("You need to select a number between 1 & 100");  
          	
          }      else {	
-        	
+        	 guessCount++ ;
+         $('span').html(guessCount);
           var result = +(compareResults(getUserGuess,getNum));
          }
           
