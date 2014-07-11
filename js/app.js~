@@ -150,12 +150,12 @@ $(document).ready(function(){
  	 lastResult =null;
  	 currentResult=null;
    console.log('The Last Result # is ' + lastResult);
- 	var getNum = randomNum();
+ 	 getNum = randomNum();
   console.log('The random # is ' + getNum);
   
  	$('span').html(0);
  	
- 
+    
  	
  	var userGuess = 
 				$('input[name="userGuess"').val("");
@@ -189,7 +189,7 @@ $('#guessButton').click(function () {
          	    $('#feedback').html("You need to select a number between 1 & 100");  
          	    $('input#userGuess').focus(); 
          	
-         } else if (validate == true )  {         
+         } else if (validate == true || getUserGuess =="")  {         
        			 
        			      			 
        		 $('#feedback').html("You did not enter a Number.   Please type a number from 1 to 100!");  

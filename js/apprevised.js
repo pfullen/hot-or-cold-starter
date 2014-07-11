@@ -54,12 +54,31 @@ $(document).ready(function(){
     var overLimit = "You need to enter a # between 1 & 100";
     // convert current result  to absolute number 
     
-    currentResult = Math.abs(currentResult);
+    currentResult = Math.abs(currentResult); 
     
   
 
    console.log(currentResult);
    console.log( lastResult);
+   
+
+    if (getUserGuess > 100 ){
+         	
+         	    $('#feedback').html("You need to select a number between 1 & 100");  
+         	    $('input#userGuess').focus(); 
+         	
+         } else if (validate == true || getUserGuess =="")  {         
+       			 
+       			      			 
+       		 $('#feedback').html("You did not enter a Number.   Please type a number from 1 to 100!");  
+         	 $('input#userGuess').focus();
+         }  else {	
+        	 guessCount++ ;
+
+   
+   
+   
+   
    
     
     if (currentResult===0) {
@@ -184,18 +203,7 @@ $('#guessButton').click(function () {
 			var getUserGuess = userGuess();
 			var validate = isNaN(getUserGuess);
         	
-         if (getUserGuess > 100 ){
-         	
-         	    $('#feedback').html("You need to select a number between 1 & 100");  
-         	    $('input#userGuess').focus(); 
-         	
-         } else if (validate == true || getUserGuess =="")  {         
-       			 
-       			      			 
-       		 $('#feedback').html("You did not enter a Number.   Please type a number from 1 to 100!");  
-         	 $('input#userGuess').focus();
-         }  else {	
-        	 guessCount++ ;
+        
         	    $('span').html(guessCount);
           var result = +(compareResults(getUserGuess,getNum));
        
@@ -207,7 +215,7 @@ $('#guessButton').click(function () {
          }
           
     
-       	 
+       	   $('#feedback').html(correct + " Your score is " + guessCount); 
        
    });
 
