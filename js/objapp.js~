@@ -1,0 +1,13 @@
+function guessGame (currentGuess, lastGuess, randNum){
+
+  this.currentGuess = currentGuess;
+  this.lastGuess = lastGuess;
+  this.randNum = randNum;
+  
+  this.result = function (){
+
+
+}
+}
+
+
