@@ -63,15 +63,11 @@ console.log("The Current Guess is : " + currentGuess);
      console.log('The random number is ' + randNum);
     $('input#userGuess').focus();    // focus on user text
     
-  // get random number on startup
   
- // var resetNow = resetPage ();
-
- 
-  
+     
 console.log('At start the last guess is ' + lastGuess);
 
-// start new Game when users clicks new game button
+// refresh page when when users clicks new game button
  $('.new').click(function () {
  	
  	location.reload(); 
@@ -106,30 +102,30 @@ $('#guessButton').click(function () {
          }  else {	
         	 guessCount++ ;
         	    $('span').html(guessCount);
-           var game = new GuessGame (getUserGuess,lastGuess, randNum);
+         var game = new GuessGame (getUserGuess,lastGuess, randNum);
      		var result = game.getResult();
           console.log("This is the result" + result);
           
           switch (result) {
           case 10:          
-           $('#feedback').html("You are cold!!!");
-           $('#feedback').css("background-color","blue"); 
+            $('#feedback').html("You are cold!!!");
+            $('#feedback').css("background-color","blue"); 
           break;
           case -10:
-           $('#feedback').html("You are hot!!!");
+            $('#feedback').html("You are hot!!!");
             $('#feedback').css("background-color","red"); 
-           break;
-           case -1:
+          break;
+          case -1:
             $('#feedback').html("You are colder!!!");
-             $('#feedback').css("background-color","blue"); 
-            break;
-            case 1:
-             $('#feedback').html("You are hotter!!!");
-              $('#feedback').css("background-color","red"); 
-             break;
-             case 0:
-             $('#feedback').html("You Guessed the Correct Number");
-             $('#feedback').css("background-color","green"); 
+            $('#feedback').css("background-color","blue"); 
+          break;
+          case 1:
+            $('#feedback').html("You are hotter!!!");
+            $('#feedback').css("background-color","red"); 
+          break;
+          case 0:
+            $('#feedback').html("You Guessed the Correct Number");
+            $('#feedback').css("background-color","green"); 
           }
           
           lastGuess = getUserGuess;

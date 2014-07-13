@@ -53,15 +53,7 @@ console.log("The Current Guess is : " + currentGuess);
 };
 };
 
-
-
-
-
-
-
-
-
-  	 
+	 
  //  *************Main code*************
     var guessCount = 0;
     var lastGuess =null;
