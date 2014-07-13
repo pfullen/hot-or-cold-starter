@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
@@ -12,160 +11,70 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-// ****************** Functions *****************
 
 
-//  New Game Function
+// Guess Game Object
+function GuessGame (currentGuess, lastGuess,randNum){
 
-  function randomNum () {
-  	
-  	
-  	var randomNum = Math.floor((Math.random()*100)+1);
-  	return randomNum;
-  	
-  	 	 }
-  	 
-
-  	 
- // User Guess Function 	 
-  	 function userGuess () {
-  	 
-  	 var valGuess = +document.getElementById("userGuess").value;
-  	 
-	  
-		
-
-  	 return valGuess;
-  	 }
-
-
-
-// Compare Results function
-	function compareResults (guess,randomNum) {
-    
-    var currentResult = guess - randomNum;
-    var correct = "You guessed the correct Number!!!"; 
-    var hot = "You are hot!!!";
-    var cold = "You are cold!!!";
-    var hotter = "You are getting hotter!!!";
-    var colder = "You are getting colder!!!";    
-    var same = "You guess is just as close as your last guess!";
-    var not_A_Num = "Your entry is not a number!";
-    var overLimit = "You need to enter a # between 1 & 100";
-    // convert current result  to absolute number 
-    
-    currentResult = Math.abs(currentResult);
-    
+  this.currentGuess = currentGuess;
+  this.lastGuess = lastGuess;
+  this.randNum = randNum;
   
-
-   console.log(currentResult);
-   console.log( lastResult);
-   
+  
     
-    if (currentResult===0) {
-   console.log(correct);
-    $('#feedback').html(correct + " Your score is " + guessCount);  
-       
-   $('#feedback').css("background-color","green");   
-   
-    
-    }    else if (lastResult === null) {    
-          // inner if to compare first result
-     if (currentResult <= 10) {
-   $('#feedback').html(hot);    
-    $('#feedback').css("background-color","red");
-    
- 
-	console.log(hot);
-   
-   } else if (currentResult >= 10) {
-    $('#feedback').html(cold);
-   $('#feedback').css("background-color","blue"); 
+  var currentResult = Math.abs(this.currentGuess - this.randNum);
+  var lastResult = Math.abs(this.lastGuess - this.randNum);  
+console.log("The Last Guess is :" + lastGuess);
+console.log("The current result is " + currentResult);
+console.log("The last result is " + lastResult);
+console.log("The Current Guess is : " + currentGuess);
 
-	console.log(cold); 
-   }  // close inner if on first guess
-}
-       
-        //  if to compare subsequent guesses to see if player is getting hotter or colder
-      	
-         else if (currentResult < lastResult) {
-     		 $('#feedback').html(hotter);
-     		 $('#feedback').css("background-color","red");
-     		
-     		
-     		}   else if (currentResult > lastResult) {
-			  $('#feedback').html(colder); 
-			  $('#feedback').css("background-color","blue"); 
-			
-     		
-     		}
-         
-     lastResult = currentResult;
-     
-     }    
-     
-        
-             
-       
-      	 
-  	  	 
-  	 
-  	 
-  	 
-// reset function 
-
- /* function resetPage () {
-  	 var guessCount = 0;
-    var lastUserGuess =0;
-  	
-  	var userGuess =
-				$('input[name="userGuess"').val("");    //  reset user guess input field
+// Get result method  
+  this.getResult = function (){
+    if ( currentResult == 0 ) {
+    	return 0;
+     } else if (lastGuess == null) {
+            if (currentResult > 10) {
+				return 10;            
+            } else {
+				return -10;
+			}    	     	    	
+    } else if (currentResult < lastResult ) {
 		
-		guessCount = 0;
- 			$('span').html(guessCount);
- 			
- 			$('#feedback').html('Make your Guess!');
- 			$('ul.guessBox').html('<li> Your Guesses: </li>');		
-				('span').html(0);
-  }
-  	 
-  	 
-  	 */
-  	 
+		return 1;	  
+	  
+	  } else {
+		return -1;	  
+	  };
+
+
+
+
+};
+};
+
+	 
  //  *************Main code*************
     var guessCount = 0;
-    var lastResult =null;
+    var lastGuess =null;
+    var getUserGuess = null;
+    
+     var randNum = Math.floor((Math.random()*100)+1);
+     console.log('The random number is ' + randNum);
     $('input#userGuess').focus();    // focus on user text
     
   // get random number on startup
   
  // var resetNow = resetPage ();
-  var getNum = randomNum();
-  console.log('The random # is ' + getNum);
 
+ 
+  
+console.log('At start the last guess is ' + lastGuess);
 
 // start new Game when users clicks new game button
  $('.new').click(function () {
-    $('input#userGuess').focus();  
- 	 lastResult =null;
- 	 currentResult=null;
-    console.log('The Last Result # is ' + lastResult);
-  	 getNum = randomNum();
-    console.log('The random # is ' + getNum);
-  
- 	$('span').html(0);
  	
-    
- 	
- 	var userGuess = 
-				$('input[name="userGuess"').val("");
-				
-				guessCount = 0;
- 			$('span').html(guessCount);
- 			
- 			$('#feedback').html('Guess a Number between 1 & 100');
- 	
- 	      $('ul#guessList').html('');
+ 	location.reload(); 
  	
  })
 
@@ -181,7 +90,7 @@ $('form').submit(function(event){
 // get value of user's guess when user clicks guess then compare to random number generated by computer
 $('#guessButton').click(function () {
 		 
-			var getUserGuess = userGuess();
+			var getUserGuess = +document.getElementById("userGuess").value;
 			var validate = isNaN(getUserGuess);
         	
          if (getUserGuess > 100 ){
@@ -197,7 +106,33 @@ $('#guessButton').click(function () {
          }  else {	
         	 guessCount++ ;
         	    $('span').html(guessCount);
-          var result = +(compareResults(getUserGuess,getNum));
+           var game = new GuessGame (getUserGuess,lastGuess, randNum);
+     		var result = game.getResult();
+          console.log("This is the result" + result);
+          
+          switch (result) {
+          case 10:          
+           $('#feedback').html("You are cold!!!");
+           $('#feedback').css("background-color","blue"); 
+          break;
+          case -10:
+           $('#feedback').html("You are hot!!!");
+            $('#feedback').css("background-color","red"); 
+           break;
+           case -1:
+            $('#feedback').html("You are colder!!!");
+             $('#feedback').css("background-color","blue"); 
+            break;
+            case 1:
+             $('#feedback').html("You are hotter!!!");
+              $('#feedback').css("background-color","red"); 
+             break;
+             case 0:
+             $('#feedback').html("You Guessed the Correct Number");
+             $('#feedback').css("background-color","green"); 
+          }
+          
+          lastGuess = getUserGuess;
        
           $('input[name="userGuess"').val("");
          
@@ -205,25 +140,17 @@ $('#guessButton').click(function () {
  	 			'<li>' + getUserGuess + '</li>'	 	     
  	 			);	
          }
-          
-    
-       	 
-       
+              	 
+      
    });
 
-
-
-
-
-// Evaluate Guess against the random number generated by computer
-
-
-
-
-
-
-
-
 });
+
+
+
+
+
+
+
 
 
